@@ -14,26 +14,32 @@ fs.createReadStream(imageUrl).pipe(new PNG({
 })).on('parsed', function(data) {
   var srcStrIdx = 0;
   var sourceStr = process.argv[3] || DEFAULT_STRING;
-  console.log('source string', sourceStr)
-  for (var y = 0; y <= this.width; y++) {
-    for (var x = 0; x <= this.height; x++) {
+
+  for (var y = 1; y < this.width; y++) {
+    var srcChar = sourceStr[srcStrIdx];
+    for (var x = 0; x < this.height; x++) {//x <= this.height; x++) {
       var idx = (this.width * x + y) << 2;
-      var srcChar = sourceStr[srcStrIdx];
+
 
       // Set pixel background color
       ctx.fg(this.data[idx], this.data[idx + 1], this.data[idx + 2]);
 
+      // Print char to terminal
       ctx.text(y, x, srcChar);
 
-      srcStrIdx++;
-      if (srcStrIdx >= sourceStr.length) {
-        srcStrIdx = 0;
-      }
+
+
 
       // invert the colors
       // this.data[idx] = 255 - this.data[idx];
       // this.data[idx + 1] = 255 - this.data[idx + 1];
       // this.data[idx + 2] = 255 - this.data[idx + 2];
+
+
+    }
+    srcStrIdx++;
+    if (srcStrIdx >= sourceStr.length) {
+      srcStrIdx = 0;
     }
   }
   ctx.cursor.restore();
