@@ -24,18 +24,9 @@ fs.createReadStream(imageUrl).pipe(new PNG({
       // Set pixel background color
       ctx.fg(this.data[idx], this.data[idx + 1], this.data[idx + 2]);
 
+
       // Print char to terminal
       ctx.text(y, x, srcChar);
-
-
-
-
-      // invert the colors
-      // this.data[idx] = 255 - this.data[idx];
-      // this.data[idx + 1] = 255 - this.data[idx + 1];
-      // this.data[idx + 2] = 255 - this.data[idx + 2];
-
-
     }
     srcStrIdx++;
     if (srcStrIdx >= sourceStr.length) {
