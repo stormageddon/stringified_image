@@ -15,8 +15,8 @@ fs.createReadStream(imageUrl).pipe(new PNG({
   var srcStrIdx = 0;
   var sourceStr = process.argv[3] || DEFAULT_STRING;
   console.log('source string', sourceStr)
-  for (var y = 0; y < this.width; y++) {
-    for (var x = 0; x < this.height; x++) {
+  for (var y = 0; y <= this.width; y++) {
+    for (var x = 0; x <= this.height; x++) {
       var idx = (this.width * x + y) << 2;
       var srcChar = sourceStr[srcStrIdx];
 
